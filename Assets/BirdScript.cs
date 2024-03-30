@@ -21,6 +21,7 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //press q to quit game
         if (Input.GetKeyDown(KeyCode.Q) == true)
         { 
             Application.Quit();

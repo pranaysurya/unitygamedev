@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BirdScript : MonoBehaviour
@@ -8,6 +9,8 @@ public class BirdScript : MonoBehaviour
     public float flapStrength;
     private LogicScript logic;
     public bool birdIsAlive = true;
+    public AudioSource audioSource;
+    public AudioClip gameOverClip, flapClip;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +21,15 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q) == true)
+        { 
+            Application.Quit();
+        }
+
         if (Input.GetKeyDown(KeyCode.UpArrow) == true && birdIsAlive == true)
         { 
             MyRigidbody.velocity = Vector2.up * flapStrength;
+            musicPlayFlap();
         }
     }
 
@@ -28,9 +37,18 @@ public class BirdScript : MonoBehaviour
     {
         logic.GameOver();
         birdIsAlive = false;
+        musicPlayGameOver();
     }
 
+    void musicPlayGameOver()
+    {
+        audioSource.PlayOneShot(gameOverClip);
+    }
 
+    void musicPlayFlap()
+    {
+        audioSource.PlayOneShot(flapClip);
+    }
 
 }
 

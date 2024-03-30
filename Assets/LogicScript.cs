@@ -19,6 +19,7 @@ public class LogicScript : MonoBehaviour
     {
         PlayerScore += scoreToAdd;
         scoreText.text = PlayerScore.ToString();
+        //for every point made, make a sound
         musicPlayPoint();
 
     }
